@@ -5,29 +5,26 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
+import androidx.databinding.DataBindingUtil
+import it.zukka.colormyviews.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+
+    lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+
         setListeners()
     }
 
     private fun setListeners() {
-
-        val box_one_text = findViewById<TextView>(R.id.box_one_text)
-        val box_two_text = findViewById<TextView>(R.id.box_two_text)
-        val box_three_text = findViewById<TextView>(R.id.box_three_text)
-        val box_four_text = findViewById<TextView>(R.id.box_four_text)
-        val box_five_text = findViewById<TextView>(R.id.box_five_text)
-        val greenButton = findViewById<TextView>(R.id.green_button)
-        val yellowButton = findViewById<TextView>(R.id.yellow_button)
-        val redButton = findViewById<TextView>(R.id.red_button)
         val clickableViews: List<View> =
-                listOf(box_one_text, box_two_text, box_three_text,
-                        box_four_text, box_five_text, redButton, yellowButton, greenButton)
+                listOf(binding.boxOneText, binding.boxTwoText, binding.boxThreeText,
+                        binding.boxFourText, binding.boxFiveText, binding.redButton, binding.yellowButton, binding.greenButton)
 
         for (item in clickableViews) {
             item.setOnClickListener { makeColored(it) }
